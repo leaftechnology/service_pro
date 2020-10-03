@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "creation": "2020-07-29 16:12:50.886079",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "expense_ledger",
+  "description",
+  "additional_cost_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "expense_ledger",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Expense Ledger",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "additional_cost_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "in_list_view": 1,
+   "label": "Description",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2020-07-30 09:46:44.137147",
+ "modified_by": "Administrator",
+ "module": "Service Pro",
+ "name": "Additional Cost",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

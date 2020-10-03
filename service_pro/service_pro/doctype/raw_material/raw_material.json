@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "creation": "2020-10-01 07:00:27.799274",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "item_name",
+  "warehouse",
+  "available_qty",
+  "production",
+  "column_break_4",
+  "umo",
+  "qty_raw_material",
+  "rate_raw_material",
+  "amount_raw_material",
+  "cost_center"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "available_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Available Qty"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "1",
+   "fieldname": "qty_raw_material",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "rate_raw_material",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "amount_raw_material",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "production",
+   "fieldtype": "Link",
+   "label": "Production",
+   "options": "Production"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "umo",
+   "fieldtype": "Link",
+   "label": "UMO",
+   "options": "UOM"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2020-10-01 07:00:27.799274",
+ "modified_by": "Administrator",
+ "module": "Service Pro",
+ "name": "Raw Material",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

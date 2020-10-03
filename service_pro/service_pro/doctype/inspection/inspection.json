@@ -1,0 +1,294 @@
+{
+ "actions": [],
+ "autoname": "format:{series}{YYYY}-{#####}",
+ "creation": "2020-10-01 07:00:52.266563",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "series",
+  "date",
+  "service_receipt_note",
+  "customer",
+  "customer_name",
+  "city",
+  "contact_person",
+  "telephone",
+  "fax",
+  "column_break_9",
+  "machine_type",
+  "manufacture",
+  "serial_no",
+  "power",
+  "speed",
+  "frequency",
+  "volts",
+  "current",
+  "section_break_18",
+  "stator_and_thermal_protector",
+  "column_break_20",
+  "rotor_or_armature",
+  "section_break_23",
+  "terminal_board_and_housing_or_brackets",
+  "column_break_25",
+  "miscellaneous_and_missing_parts",
+  "section_break_26",
+  "scoop_of_work_and_repairing_main_punp",
+  "section_break_36",
+  "attach_1",
+  "image_1",
+  "column_break_38",
+  "attach_2",
+  "image_2",
+  "section_break_42",
+  "terms_and_condition",
+  "letter_head",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Telephone"
+  },
+  {
+   "fieldname": "fax",
+   "fieldtype": "Data",
+   "label": "Fax"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "machine_type",
+   "fieldtype": "Data",
+   "label": "Machine Type"
+  },
+  {
+   "fieldname": "manufacture",
+   "fieldtype": "Data",
+   "label": "Manufacture"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No."
+  },
+  {
+   "fieldname": "power",
+   "fieldtype": "Data",
+   "label": "Power"
+  },
+  {
+   "fieldname": "speed",
+   "fieldtype": "Data",
+   "label": "Speed"
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Data",
+   "label": "Frequency"
+  },
+  {
+   "fieldname": "volts",
+   "fieldtype": "Data",
+   "label": "Volts"
+  },
+  {
+   "fieldname": "current",
+   "fieldtype": "Data",
+   "label": "Current"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval: !cur_frm.is_new()",
+   "fieldname": "section_break_36",
+   "fieldtype": "Section Break",
+   "label": "Images"
+  },
+  {
+   "fieldname": "attach_1",
+   "fieldtype": "Attach",
+   "label": "Attach 1"
+  },
+  {
+   "fieldname": "image_1",
+   "fieldtype": "Image",
+   "label": "Image 1",
+   "options": "attach_1"
+  },
+  {
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attach_2",
+   "fieldtype": "Attach",
+   "label": "Attach 2"
+  },
+  {
+   "fieldname": "image_2",
+   "fieldtype": "Image",
+   "label": "Image 2",
+   "options": "attach_2"
+  },
+  {
+   "fieldname": "section_break_42",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "letter_head",
+   "fieldtype": "Link",
+   "label": "Letter Head",
+   "options": "Letter Head"
+  },
+  {
+   "fieldname": "series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "IR-"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "To Estimation",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Status",
+   "options": "\nClosed\nTo Estimation\nTo Production\nCompleted"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Inspection",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "stator_and_thermal_protector",
+   "fieldtype": "Table",
+   "label": "STATOR and THERMAL PROTECTOR",
+   "options": "Road Condition"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rotor_or_armature",
+   "fieldtype": "Table",
+   "label": "ROTOR OR ARMATURE and BEARINGS AND LUBRICANT",
+   "options": "Road Condition"
+  },
+  {
+   "fieldname": "section_break_23",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "terminal_board_and_housing_or_brackets",
+   "fieldtype": "Table",
+   "label": "TERMINAL BOARD and HOUSING OR BRACKETS",
+   "options": "Road Condition"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "miscellaneous_and_missing_parts",
+   "fieldtype": "Table",
+   "label": "MISCELLANEOUS and MISSING PARTS",
+   "options": "Road Condition"
+  },
+  {
+   "fieldname": "section_break_26",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "scoop_of_work_and_repairing_main_punp",
+   "fieldtype": "Table",
+   "label": "SCOOP OF WORK and REPAIRING MAIN PUNP",
+   "options": "Road Condition"
+  },
+  {
+   "fieldname": "terms_and_condition",
+   "fieldtype": "Link",
+   "label": "Terms and Condition",
+   "options": "Terms and Conditions"
+  },
+  {
+   "fieldname": "service_receipt_note",
+   "fieldtype": "Link",
+   "label": "Service Receipt Note",
+   "options": "Service Receipt Note"
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2020-10-03 12:31:57.126608",
+ "modified_by": "Administrator",
+ "module": "Service Pro",
+ "name": "Inspection",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

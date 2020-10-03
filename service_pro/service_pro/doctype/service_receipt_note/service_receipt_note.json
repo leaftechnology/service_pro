@@ -1,0 +1,202 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2020-10-02 19:07:41.022991",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "date",
+  "customer",
+  "customer_name",
+  "city",
+  "contact_person",
+  "telephone",
+  "fax",
+  "column_break_9",
+  "machine_type",
+  "manufacture",
+  "serial_no",
+  "power",
+  "speed",
+  "frequency",
+  "volts",
+  "current",
+  "section_break_18",
+  "visual_inspection",
+  "received_by",
+  "section_break_21",
+  "term_and_condition",
+  "term",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "allow_on_submit": 1,
+   "default": "To Inspection",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Status",
+   "options": "\nClosed\nTo Inspection\nTo Estimation\nTo Production"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SRN-"
+  },
+
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Telephone"
+  },
+  {
+   "fieldname": "fax",
+   "fieldtype": "Data",
+   "label": "Fax"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "machine_type",
+   "fieldtype": "Data",
+   "label": "Machine Type"
+  },
+  {
+   "fieldname": "manufacture",
+   "fieldtype": "Data",
+   "label": "Manufacture"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No."
+  },
+  {
+   "fieldname": "power",
+   "fieldtype": "Data",
+   "label": "Power"
+  },
+  {
+   "fieldname": "speed",
+   "fieldtype": "Data",
+   "label": "Speed"
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Data",
+   "label": "Frequency"
+  },
+  {
+   "fieldname": "volts",
+   "fieldtype": "Data",
+   "label": "Volts"
+  },
+  {
+   "fieldname": "current",
+   "fieldtype": "Data",
+   "label": "Current"
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "visual_inspection",
+   "fieldtype": "Small Text",
+   "label": "VIsual Inspection"
+  },
+  {
+   "fieldname": "received_by",
+   "fieldtype": "Data",
+   "label": "Received By"
+  },
+  {
+   "fieldname": "section_break_21",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "term_and_condition",
+   "fieldtype": "Link",
+   "label": "Term and Condition",
+   "options": "Terms and Conditions"
+  },
+  {
+   "fetch_from": "term_and_condition.terms",
+   "fieldname": "term",
+   "fieldtype": "Text Editor",
+   "label": "Term"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Service Receipt Note",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2020-10-03 13:13:44.145050",
+ "modified_by": "Administrator",
+ "module": "Service Pro",
+ "name": "Service Receipt Note",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

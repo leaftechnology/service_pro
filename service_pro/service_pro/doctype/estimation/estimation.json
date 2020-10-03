@@ -1,0 +1,345 @@
+{
+ "actions": [],
+ "autoname": "format:{series}{YYYY}-{#####}",
+ "creation": "2020-10-01 06:57:53.710220",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "series",
+  "posting_date",
+  "service_receipt_note",
+  "inspections",
+  "customer",
+  "customer_name",
+  "contact",
+  "faxtel_number",
+  "column_break_7",
+  "make",
+  "ws_number",
+  "p",
+  "rpm",
+  "assembled",
+  "section_break_14",
+  "types",
+  "section_break_16",
+  "failure",
+  "to_be_subcontracted",
+  "column_break_19",
+  "other_repairs",
+  "original_winding",
+  "delivery_time",
+  "price",
+  "finished_good",
+  "item_code_est",
+  "item_name",
+  "rate",
+  "column_break_22",
+  "qty",
+  "amount",
+  "scoop_of_works_section",
+  "scoop_of_work",
+  "section_break_28",
+  "scoop_of_work_total",
+  "column_break_29",
+  "total_cost",
+  "raw_material_section",
+  "rate_of_materials_based_on",
+  "price_list",
+  "raw_material",
+  "update_available_stock",
+  "raw_material_total",
+  "amended_from",
+  "letter_head"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fetch_from": "receipt_note.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "finished_good",
+   "fieldtype": "Section Break",
+   "label": "Finished Good"
+  },
+  {
+   "default": "0",
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Qty",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "inspections",
+   "fieldtype": "Link",
+   "label": "Inspection",
+   "options": "Inspection"
+  },
+  {
+   "fieldname": "scoop_of_works_section",
+   "fieldtype": "Section Break",
+   "label": "Scoop of Works"
+  },
+  {
+   "fieldname": "raw_material_section",
+   "fieldtype": "Section Break",
+   "label": "Raw Material"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Estimation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "scoop_of_work",
+   "fieldtype": "Table",
+   "options": "Scoop of Work"
+  },
+  {
+   "fieldname": "raw_material",
+   "fieldtype": "Table",
+   "options": "Raw Material"
+  },
+  {
+   "default": "0",
+   "fieldname": "scoop_of_work_total",
+   "fieldtype": "Currency",
+   "label": "Total"
+  },
+  {
+   "default": "0",
+   "fieldname": "raw_material_total",
+   "fieldtype": "Currency",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rate_of_materials_based_on",
+   "fieldtype": "Select",
+   "label": "Rate of Materials based on",
+   "options": "\nValuation Rate\nPrice List"
+  },
+  {
+   "depends_on": "eval: doc.rate_of_materials_based_on == \"Price List\"",
+   "fieldname": "price_list",
+   "fieldtype": "Select",
+   "label": "Price List",
+   "options": "\nStandard Buying\nStandard Selling"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "letter_head",
+   "fieldtype": "Link",
+   "label": "Letter Head",
+   "options": "Letter Head"
+  },
+  {
+   "fieldname": "update_available_stock",
+   "fieldtype": "Button",
+   "label": "Update Available Stock",
+   "options": "set_available_qty"
+  },
+  {
+   "fieldname": "series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "options": "ER-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "item_code_est",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_29",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_28",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "To Production",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Status",
+   "options": "\nClosed\nTo Production\nCompleted"
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Data",
+   "label": "Contact"
+  },
+  {
+   "fieldname": "faxtel_number",
+   "fieldtype": "Data",
+   "label": "Fax/Tel Number"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "ws_number",
+   "fieldtype": "Data",
+   "label": "WS Number"
+  },
+  {
+   "fieldname": "p",
+   "fieldtype": "Data",
+   "label": "P"
+  },
+  {
+   "fieldname": "rpm",
+   "fieldtype": "Data",
+   "label": "RPM"
+  },
+  {
+   "fieldname": "assembled",
+   "fieldtype": "Select",
+   "label": "Assembled",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "types",
+   "fieldtype": "Table",
+   "label": "Types",
+   "options": "Type Table"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "failure",
+   "fieldtype": "Small Text",
+   "label": "Failure"
+  },
+  {
+   "fieldname": "other_repairs",
+   "fieldtype": "Small Text",
+   "label": "Other Repairs"
+  },
+  {
+   "fieldname": "original_winding",
+   "fieldtype": "Select",
+   "label": "Original Winding?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "to_be_subcontracted",
+   "fieldtype": "Small Text",
+   "label": "To Be Subcontracted"
+  },
+  {
+   "fieldname": "delivery_time",
+   "fieldtype": "Time",
+   "label": "Delivery Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_receipt_note",
+   "fieldtype": "Link",
+   "label": "Service Receipt Note",
+   "options": "Service Receipt Note"
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2020-10-03 12:54:59.865647",
+ "modified_by": "Administrator",
+ "module": "Service Pro",
+ "name": "Estimation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
