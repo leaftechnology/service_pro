@@ -50,7 +50,7 @@ frappe.ui.form.on('Service Receipt Note', {
              frappe.db.get_list('Estimation', {
                 fields: ["*"],
                 filters: {
-                    receipt_note: cur_frm.docname,
+                    service_receipt_note: cur_frm.docname,
                     docstatus: 0
                 }
             }).then(records => {
@@ -72,7 +72,7 @@ frappe.ui.form.on('Service Receipt Note', {
                         frappe.db.get_list('Estimation', {
                             fields: ["*"],
                             filters: {
-                                receipt_note: cur_frm.docname,
+                                service_receipt_note: cur_frm.docname,
                                 docstatus: 0
                             }
                         }).then(records1 => {
