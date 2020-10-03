@@ -24,6 +24,11 @@
   "frequency",
   "volts",
   "current",
+  "section_break_19",
+  "item_code",
+  "item_name",
+  "column_break_17",
+  "qty",
   "section_break_18",
   "stator_and_thermal_protector",
   "column_break_20",
@@ -263,11 +268,37 @@
    "fieldtype": "Link",
    "label": "Service Receipt Note",
    "options": "Service Receipt Note"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Qty"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_19",
+   "fieldtype": "Section Break"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-03 12:31:57.126608",
+ "modified": "2020-10-03 20:25:02.901085",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Inspection",

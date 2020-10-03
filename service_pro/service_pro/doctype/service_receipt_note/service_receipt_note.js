@@ -124,21 +124,21 @@ frappe.ui.form.on('Service Receipt Note', {
         }
 
     },
-    contact_person: function () {
-	    if(cur_frm.doc.contact_person){
-	         frappe.db.get_doc("Contact", cur_frm.doc.contact_person)
-                .then(doc => {
-                    console.log(doc)
-                    for(var x=0;x<doc.phone_nos.length;x+=1){
-                        if(doc.phone_nos[x].is_primary_phone){
-                            cur_frm.doc.contact_number = doc.phone_nos[x].phone
-                            cur_frm.refresh_field("contact_number")
-                        }
-                    }
-                })
-        }
-
-    },
+    // contact_person: function () {
+	 //    if(cur_frm.doc.contact_person){
+	 //         frappe.db.get_doc("Contact", cur_frm.doc.contact_person)
+    //             .then(doc => {
+    //                 console.log(doc)
+    //                 for(var x=0;x<doc.phone_nos.length;x+=1){
+    //                     if(doc.phone_nos[x].is_primary_phone){
+    //                         cur_frm.doc.contact_number = doc.phone_nos[x].phone
+    //                         cur_frm.refresh_field("contact_number")
+    //                     }
+    //                 }
+    //             })
+    //     }
+    //
+    // },
     sales_man: function () {
 	    if(cur_frm.doc.sales_man){
 	         frappe.db.get_doc("Employee", cur_frm.doc.sales_man)

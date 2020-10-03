@@ -26,10 +26,13 @@
   "section_break_18",
   "visual_inspection",
   "received_by",
+  "section_break_12",
+  "materials",
   "section_break_21",
   "term_and_condition",
   "term",
-  "amended_from"
+  "amended_from",
+  "status"
  ],
  "fields": [
   {
@@ -47,7 +50,6 @@
    "label": "Series",
    "options": "SRN-"
   },
-
   {
    "default": "Today",
    "fieldname": "date",
@@ -150,6 +152,16 @@
    "label": "Received By"
   },
   {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "materials",
+   "fieldtype": "Table",
+   "label": "Materials",
+   "options": "Service Receipt Note Item"
+  },
+  {
    "fieldname": "section_break_21",
    "fieldtype": "Section Break"
   },
@@ -177,7 +189,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-03 13:13:44.145050",
+ "modified": "2020-10-03 20:28:05.062862",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Service Receipt Note",

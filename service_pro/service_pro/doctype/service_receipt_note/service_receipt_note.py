@@ -13,28 +13,32 @@ class ServiceReceiptNote(Document):
 		frappe.db.commit()
 
 	def on_submit(self):
-		doc = {
-			"doctype": "Inspection",
-			"date": self.date,
-			"customer": self.customer,
-			"customer_name": self.customer_name,
+		for i in self.materials:
+			for ii in range(0,i.qty):
+				doc = {
+					"doctype": "Inspection",
+					"date": self.date,
+					"customer": self.customer,
+					"customer_name": self.customer_name,
+					"city": self.city,
+					"contact_person": self.contact_person,
+					"telephone": self.telephone,
+					"fax": self.fax,
+					"machine_type": self.machine_type,
+					"manufacture": self.manufacture,
+					"serial_no": self.serial_no,
+					"power": self.power,
+					"speed": self.speed,
+					"frequency": self.frequency,
+					"volts": self.volts,
+					"current": self.current,
+					"item_code": i.materials,
+					"item_name": i.item_name,
+					"qty": 1,
+					"service_receipt_note": self.name
+				}
 
-			"city": self.city,
-			"contact_person": self.contact_person,
-			"telephone": self.telephone,
-			"fax": self.fax,
-			"machine_type": self.machine_type,
-			"manufacture": self.manufacture,
-			"serial_no": self.serial_no,
-			"power": self.power,
-			"speed": self.speed,
-			"frequency": self.frequency,
-			"volts": self.volts,
-			"current": self.current,
-			"service_receipt_note": self.name
-		}
-
-		frappe.get_doc(doc).insert()
+				frappe.get_doc(doc).insert()
 
 	def submit_inspections(self):
 		inspections = frappe.db.sql(""" SELECT * FROM `tabInspection` WHERE service_receipt_note=%s""",self.name, as_dict=1)
