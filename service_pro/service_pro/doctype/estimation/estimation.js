@@ -1,21 +1,7 @@
 // Copyright (c) 2020, jan and contributors
 // For license information, please see license.txt
-cur_frm.cscript.inspection = function (frm, cdt, cdn) {
-    var d = locals[cdt][cdn]
-    if(d.inspection){
-        var names = Array.from(cur_frm.doc.inspections, x => "inspection" in x ? x.inspection:"")
-        cur_frm.fields_dict.inspections.grid.get_field("inspection").get_query =
-			function() {
-				return {
-					filters: [
-                    	["item_code", "=", d.item_code],
-                        ["service_receipt_note", "=", cur_frm.doc.receipt_note],
-                    	["docstatus", "=", 1],
-                           ["status", "in", ["To Estimation", "To Production"]],
-                    	["name", "not in", names]
-					]
-				}
-			}
+cur_frm.cscript.inspections = function (frm, cdt, cdn) {
+    if(cur_frm.doc.inspections){
 
 			if(cur_frm.doc.qty > 0){
                 cur_frm.doc.qty  += 1
@@ -23,10 +9,10 @@ cur_frm.cscript.inspection = function (frm, cdt, cdn) {
                                 set_rate_and_amount(cur_frm)
 
             } else {
-			    frappe.db.get_doc("Inspection", d.inspection)
+			    frappe.db.get_doc("Inspection", cur_frm.doc.inspections)
                     .then(doc => {
-                      cur_frm.doc.item_code_est = doc.item_code
-                      cur_frm.doc.qty = 1
+                  cur_frm.doc.item_code_est = doc.item_code
+                  cur_frm.doc.qty = 1
                 cur_frm.trigger("item_code_est")
                 cur_frm.refresh_field("qty")
                 cur_frm.refresh_field("item_code_est")
@@ -37,12 +23,12 @@ cur_frm.cscript.inspection = function (frm, cdt, cdn) {
 }
 frappe.ui.form.on('Estimation', {
     service_receipt_note: function () {
-        if(cur_frm.doc.receipt_note){
-            cur_frm.fields_dict.inspections.grid.get_field("inspection").get_query =
+        if(cur_frm.doc.service_receipt_note){
+            cur_frm.fields_dict.inspections.get_query =
 			function() {
 				return {
 					filters: [
-                    	["service_receipt_note", "=", cur_frm.doc.receipt_note],
+                    	["service_receipt_note", "=", cur_frm.doc.service_receipt_note],
                     	["docstatus", "=", 1],
                         ["status", "in", ["To Production","To Estimation"]]
 					]
