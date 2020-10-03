@@ -48,7 +48,7 @@ class ServiceReceiptNote(Document):
 		frappe.msgprint("Done Submitting Inspections")
 
 	def submit_estimations(self):
-			estimations = frappe.db.sql(""" SELECT * FROM `tabEstimation` WHERE receipt_note=%s""",self.name, as_dict=1)
+			estimations = frappe.db.sql(""" SELECT * FROM `tabEstimation` WHERE service_receipt_note=%s""",self.name, as_dict=1)
 			for estimation in estimations:
 				record = frappe.get_doc("Estimation", estimation.name)
 				record.submit()
