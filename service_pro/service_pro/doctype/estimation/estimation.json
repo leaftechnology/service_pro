@@ -10,7 +10,6 @@
   "series",
   "posting_date",
   "service_receipt_note",
-  "inspections",
   "customer",
   "customer_name",
   "contact",
@@ -21,6 +20,8 @@
   "p",
   "rpm",
   "assembled",
+  "inspections_section",
+  "inspections",
   "section_break_14",
   "types",
   "section_break_16",
@@ -108,10 +109,15 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval: doc.service_receipt_note != undefined",
+   "fieldname": "inspections_section",
+   "fieldtype": "Section Break",
+   "label": "Inspections"
+  },
+  {
    "fieldname": "inspections",
-   "fieldtype": "Link",
-   "label": "Inspection",
-   "options": "Inspection"
+   "fieldtype": "Table",
+   "options": "Inspection Table"
   },
   {
    "fieldname": "scoop_of_works_section",
@@ -320,7 +326,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-03 12:54:59.865647",
+ "modified": "2020-10-03 23:03:57.056020",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Estimation",
