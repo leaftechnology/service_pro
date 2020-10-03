@@ -139,6 +139,7 @@ frappe.ui.form.on('Service Receipt Note', {
     //     }
     //
     // },
+
     sales_man: function () {
 	    if(cur_frm.doc.sales_man){
 	         frappe.db.get_doc("Employee", cur_frm.doc.sales_man)
