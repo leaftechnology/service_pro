@@ -478,7 +478,6 @@
   },
   {
    "default": "0",
-   "depends_on": "eval: doc.type == \"Service\"",
    "fieldname": "no_estimation",
    "fieldtype": "Check",
    "label": "No Estimation"
@@ -486,7 +485,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-04 16:33:33.218531",
+ "modified": "2020-10-04 16:50:53.564786",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Production",
