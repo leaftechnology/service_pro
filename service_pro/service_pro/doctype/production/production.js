@@ -702,66 +702,22 @@ cur_frm.refresh_field("item_selling_price_list")
 			}
         }
     },
+    no_estimation: function () {
+        cur_frm.toggle_reqd('estimation', !cur_frm.doc.no_estimation)
+        cur_frm.set_df_property("scoop_of_work", "hidden", cur_frm.doc.no_estimation)
+            cur_frm.set_df_property("scoop_of_work_total", "hidden", cur_frm.doc.no_estimation)
+            cur_frm.set_df_property("editable_total", "hidden", cur_frm.doc.no_estimation)
+    },
     type: function(frm) {
 	    if(cur_frm.doc.type && cur_frm.doc.type === "Service"){
             filter_link_field(cur_frm)
 
-            frm.set_df_property('series', 'options', ['CS-'])
-            cur_frm.doc.series = "CS-"
+            frm.set_df_property('series', 'options', ['RW-AC-','RW-DC-'])
+            cur_frm.doc.series = "RW-AC-"
             cur_frm.refresh_field("series")
-            cur_frm.set_df_property("scoop_of_work", "hidden", 0)
-                        cur_frm.set_df_property("scoop_of_work_total", "hidden", 0 )
-
-        } else if(cur_frm.doc.type && cur_frm.doc.type === "Assemble") {
-	        cur_frm.doc.estimation = ""
-            cur_frm.refresh_field("estimation")
-            frm.trigger('estimation');
-	        frm.set_df_property('series', 'options', ['','SK-','HA-', 'PB-'])
-
-            cur_frm.set_df_property("scoop_of_work", "hidden", 1)
-            cur_frm.set_df_property("scoop_of_work_total", "hidden", 1)
-            cur_frm.set_df_property("editable_total", "hidden", 1)
-            cur_frm.set_df_property("section_break_21", "hidden", 1)
-            cur_frm.set_df_property("section_break111", "hidden", 1)
-            cur_frm.clear_table("linked_productions")
-            cur_frm.refresh_field("linked_productions")
-            cur_frm.fields_dict.linked_productions.grid.get_field("cylinder_service").get_query =
-			function() {
-				return {
-					 filters: [
-                    ["status", "!=", "Completed"],
-                    ["docstatus", "=", 1],
-                    ["series", "=", "CS-"],
-                ]
-				}
-			}
-
-        } else if(cur_frm.doc.type && cur_frm.doc.type === "Disassemble") {
-
-	        cur_frm.doc.estimation = ""
-            cur_frm.refresh_field("estimation")
-            frm.trigger('estimation');
-
-	        frm.set_df_property('series', 'options', ['SK-D-'])
-            cur_frm.doc.series = "SK-D-"
-            cur_frm.refresh_field("series")
-            cur_frm.set_df_property("scoop_of_work", "hidden", 1)
-            cur_frm.set_df_property("scoop_of_work_total", "hidden", 1)
-            cur_frm.set_df_property("editable_total", "hidden", 1)
-            cur_frm.set_df_property("section_break_21", "hidden", 1)
-            cur_frm.set_df_property("section_break111", "hidden", 1)
-            cur_frm.clear_table("linked_productions")
-            cur_frm.refresh_field("linked_productions")
-            cur_frm.fields_dict.linked_productions.grid.get_field("cylinder_service").get_query =
-			function() {
-				return {
-					 filters: [
-                    ["status", "!=", "Completed"],
-                    ["docstatus", "=", 1],
-                    ["series", "=", "CS-"],
-                ]
-				}
-			}
+            cur_frm.set_df_property("scoop_of_work", "hidden", cur_frm.doc.no_estimation)
+            cur_frm.set_df_property("scoop_of_work_total", "hidden", cur_frm.doc.no_estimation)
+            cur_frm.set_df_property("editable_total", "hidden", cur_frm.doc.no_estimation)
 
         } else if(cur_frm.doc.type && cur_frm.doc.type === "Re-Service") {
 
@@ -769,11 +725,13 @@ cur_frm.refresh_field("item_selling_price_list")
             cur_frm.refresh_field("estimation")
             frm.trigger('estimation');
 
-	        frm.set_df_property('series', 'options', ['RCS-', 'RSK-', 'RHA-', 'RPB-'])
-            cur_frm.doc.series = "RCS-"
+	        frm.set_df_property('series', 'options', ['BJ-RW-AC-','BJ-RW-DC-'])
+            cur_frm.doc.series = "BJ-RW-AC-"
             cur_frm.refresh_field("series")
-            cur_frm.set_df_property("scoop_of_work", "hidden", 1)
-            cur_frm.set_df_property("scoop_of_work_total", "hidden", 1)
+            cur_frm.set_df_property("scoop_of_work", "hidden", cur_frm.doc.no_estimation)
+            cur_frm.set_df_property("scoop_of_work_total", "hidden", cur_frm.doc.no_estimation)
+                        cur_frm.set_df_property("editable_total", "hidden", cur_frm.doc.no_estimation)
+
             cur_frm.clear_table("linked_productions")
             cur_frm.refresh_field("linked_productions")
             cur_frm.fields_dict.linked_productions.grid.get_field("cylinder_service").get_query =
@@ -788,6 +746,7 @@ cur_frm.refresh_field("item_selling_price_list")
 			}
 
         }
+        cur_frm.trigger("no_estimation")
 	},
     estimation: function(frm) {
 

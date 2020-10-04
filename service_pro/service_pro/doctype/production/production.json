@@ -24,6 +24,7 @@
   "delivery_date",
   "type",
   "estimation",
+  "no_estimation",
   "production_status",
   "finished_item_section",
   "item_code_prod",
@@ -324,7 +325,7 @@
   {
    "allow_on_submit": 1,
    "default": "In Progress",
-   "depends_on": "eval: doc.type != \"Service\" && doc.type != \"\"",
+   "depends_on": "eval: doc.no_estimation == 1",
    "fieldname": "production_status",
    "fieldtype": "Select",
    "label": "Production Status",
@@ -475,11 +476,18 @@
    "fieldname": "section_break_44",
    "fieldtype": "Section Break",
    "label": "Item Selling Prices"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.type == \"Service\"",
+   "fieldname": "no_estimation",
+   "fieldtype": "Check",
+   "label": "No Estimation"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-04 14:39:25.417766",
+ "modified": "2020-10-04 16:12:04.902840",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Production",
