@@ -686,8 +686,8 @@ cur_frm.refresh_field("item_selling_price_list")
     no_estimation: function () {
         cur_frm.toggle_reqd('estimation', !cur_frm.doc.no_estimation)
         cur_frm.set_df_property("scoop_of_work", "hidden", cur_frm.doc.no_estimation)
-            cur_frm.set_df_property("scoop_of_work_total", "hidden", cur_frm.doc.no_estimation)
-            cur_frm.set_df_property("editable_total", "hidden", cur_frm.doc.no_estimation)
+        cur_frm.set_df_property("scoop_of_work_total", "hidden", cur_frm.doc.no_estimation)
+        cur_frm.set_df_property("editable_total", "hidden", cur_frm.doc.no_estimation)
     },
     type: function(frm) {
         frappe.db.get_single_value('Production Settings', 'mandatory_additional_cost_in_quick_service')
