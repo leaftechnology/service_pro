@@ -106,7 +106,7 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "\nAssemble\nDisassemble\nService\nRe-Service",
+   "options": "\nService\nRe-Service",
    "reqd": 1
   },
   {
@@ -485,7 +485,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-01 08:38:02.134294",
+ "modified": "2020-10-04 13:45:51.965649",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Production",

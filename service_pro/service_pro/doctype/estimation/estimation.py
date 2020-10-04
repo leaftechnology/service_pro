@@ -30,7 +30,7 @@ class Estimation(Document):
 					  (status, name))
 
 		frappe.db.sql(""" UPDATE `tabService Receipt Note` SET status=%s WHERE name=%s """,
-					  (status, self.receipt_note))
+					  (status, self.service_receipt_note))
 
 		frappe.db.commit()
 	def set_available_qty(self):

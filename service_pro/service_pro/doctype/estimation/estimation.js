@@ -63,7 +63,7 @@ frappe.ui.form.on('Estimation', {
     },
     refresh: function (frm) {
 
-         cur_frm.set_query('receipt_note', () => {
+         cur_frm.set_query('service_receipt_note', () => {
             return {
                 filters: [
                     ["docstatus", "=", 1],
