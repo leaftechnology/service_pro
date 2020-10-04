@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "series",
-  "customer_and_workshop",
   "linked_productions",
   "last_status",
   "status",
@@ -438,13 +437,6 @@
    "label": "Material Request"
   },
   {
-   "depends_on": "eval: doc.type != \"Service\" && doc.type != \"Re-Service\"",
-   "fieldname": "customer_and_workshop",
-   "fieldtype": "Select",
-   "label": "Customer and Workshop",
-   "options": "\nCustomer\nWorkshop"
-  },
-  {
    "allow_on_submit": 1,
    "fieldname": "last_status",
    "fieldtype": "Data",
@@ -485,7 +477,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-04 17:22:57.339014",
+ "modified": "2020-10-04 19:24:52.738014",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Production",

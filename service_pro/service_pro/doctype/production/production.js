@@ -179,7 +179,7 @@ cur_frm.cscript.cylinder_service = function (frm, cdt, cdn) {
                         filters.push(["customer", "=", cur_frm.doc.customer])
                     }
                     if(cur_frm.doc.type === 'Re-Service'){
-                        filters.push(["series", "in", ['RW-AC-','RW-DC-']])
+                        filters.push(["series", "in", ['MR-','MM-','MO-','CR-','CM-','CO-','OTH-']])
                     }
                     return {
                          filters: filters
@@ -215,29 +215,30 @@ frappe.ui.form.on('Production', {
 
         },
     onload: function (frm) {
+        if(!cur_frm.doc.docstatus){
+             if(cur_frm.doc.type && cur_frm.doc.type === "Service"){
+                filter_link_field(cur_frm)
+                frm.set_df_property('series', 'options', ['MR-','MM-','MO-','CR-','CM-','CO-','OTH-'])
+                cur_frm.doc.series = 'MR-'
+                cur_frm.refresh_field("series")
+                cur_frm.set_df_property("scoop_of_work", "hidden", 0)
+                cur_frm.set_df_property("scoop_of_work_total", "hidden", 0 )
 
-        if(cur_frm.doc.type && cur_frm.doc.type === "Service"){
-            filter_link_field(cur_frm)
-            frm.set_df_property('series', 'options', ['RW-AC-','RW-DC-'])
-            cur_frm.doc.series = 'RW-AC-'
-            cur_frm.refresh_field("series")
-            cur_frm.set_df_property("scoop_of_work", "hidden", 0)
-            cur_frm.set_df_property("scoop_of_work_total", "hidden", 0 )
 
-
-        } else if(cur_frm.doc.type && cur_frm.doc.type === "Re-Service") {
-	        cur_frm.doc.estimation = ""
-            cur_frm.refresh_field("estimation")
-	        frm.set_df_property('series', 'options', ['BJ-RW-AC-','BJ-RW-DC-'])
-            cur_frm.doc.series = 'BJ-RW-AC-'
-            cur_frm.refresh_field("series")
+            } else if(cur_frm.doc.type && cur_frm.doc.type === "Re-Service") {
+                cur_frm.doc.estimation = ""
+                cur_frm.refresh_field("estimation")
+                frm.set_df_property('series', 'options', ['RMR-','RMR-','RMM-','RMO-','RCR-','RCM-','RCO-','ROTH-'])
+                cur_frm.doc.series = 'RMR-'
+                cur_frm.refresh_field("series")
+            }
         }
         cur_frm.trigger("no_estimation")
         if(cur_frm.is_new()){
             if(cur_frm.doc.estimation){
                 cur_frm.doc.type = "Service"
-                 frm.set_df_property('series', 'options', ['RW-AC-','RW-DC-'])
-                cur_frm.doc.series = 'RW-AC-'
+                 frm.set_df_property('series', 'options', ['MR-','MM-','MO-','CR-','CM-','CO-','OTH-'])
+                cur_frm.doc.series = 'MR-'
                 cur_frm.refresh_field("series")
                 cur_frm.refresh_field("type")
             }
@@ -475,20 +476,38 @@ frappe.ui.form.on('Production', {
                 },
                 callback: function (r) {
                     if(!r.message && generate_button && ["In Progress", "Partially Completed", "Partially Delivered"].includes(cur_frm.doc.status) && cur_frm.doc.docstatus){
+                        if(["Service", "Re-Service"].includes(cur_frm.doc.type) && cur_frm.doc.no_estimation){
+                                if(cur_frm.doc.production_status === "Completed"){
+                                    cur_frm.add_custom_button(__("Stock Entry"), () => {
+                                         cur_frm.call({
+                                            doc: cur_frm.doc,
+                                            method: 'generate_se',
+                                            freeze: true,
+                                            freeze_message: "Generating Stock Entry...",
+                                             async: false,
+                                            callback: (r) => {
+                                                cur_frm.reload_doc()
 
+                                         }
+                                        })
+                                    }, "Generate");
+                                }
+
+                        } else {
                             cur_frm.add_custom_button(__("Stock Entry"), () => {
-                                 cur_frm.call({
-                                    doc: cur_frm.doc,
-                                    method: 'generate_se',
-                                    freeze: true,
-                                    freeze_message: "Generating Stock Entry...",
-                                     async: false,
-                                    callback: (r) => {
-                                        cur_frm.reload_doc()
+                             cur_frm.call({
+                                doc: cur_frm.doc,
+                                method: 'generate_se',
+                                freeze: true,
+                                freeze_message: "Generating Stock Entry...",
+                                 async: false,
+                                callback: (r) => {
+                                    cur_frm.reload_doc()
 
-                                 }
-                                })
-                            }, "Generate");
+                             }
+                            })
+                        }, "Generate");
+                        }
 
 
                     } else if(r.message && generate_button && ["In Progress", "Partially Completed", "Partially Delivered", "To Deliver", "To Bill", "To Deliver and Bill"].includes(cur_frm.doc.status) && cur_frm.doc.docstatus && cur_frm.doc.type !== "Re-Service"){
@@ -672,8 +691,8 @@ frappe.ui.form.on('Production', {
 	    if(cur_frm.doc.type && cur_frm.doc.type === "Service"){
             filter_link_field(cur_frm)
 
-            frm.set_df_property('series', 'options', ['RW-AC-','RW-DC-'])
-            cur_frm.doc.series = "RW-AC-"
+            frm.set_df_property('series', 'options', ['MR-','MM-','MO-','CR-','CM-','CO-','OTH-'])
+            cur_frm.doc.series = 'MR-'
             cur_frm.refresh_field("series")
             cur_frm.set_df_property("scoop_of_work", "hidden", cur_frm.doc.no_estimation)
             cur_frm.set_df_property("scoop_of_work_total", "hidden", cur_frm.doc.no_estimation)
@@ -685,8 +704,8 @@ frappe.ui.form.on('Production', {
             cur_frm.refresh_field("estimation")
             frm.trigger('estimation');
 
-	        frm.set_df_property('series', 'options', ['BJ-RW-AC-','BJ-RW-DC-'])
-            cur_frm.doc.series = "BJ-RW-AC-"
+	        frm.set_df_property('series', 'options', ['RMR-','RMR-','RMM-','RMO-','RCR-','RCM-','RCO-','ROTH-'])
+            cur_frm.doc.series = 'RMR-'
             cur_frm.refresh_field("series")
             cur_frm.set_df_property("scoop_of_work", "hidden", cur_frm.doc.no_estimation)
             cur_frm.set_df_property("scoop_of_work_total", "hidden", cur_frm.doc.no_estimation)
@@ -700,7 +719,7 @@ frappe.ui.form.on('Production', {
 					 filters: [
                         ["status", "=", "Completed"],
                         ["docstatus", "=", 1],
-                        ["series", "in", ['RW-AC-','RW-DC-']]
+                        ["series", "in", ['MR-','MM-','MO-','CR-','CM-','CO-','OTH-']]
                     ]
 				}
 			}
