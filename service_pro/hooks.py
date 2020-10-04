@@ -83,13 +83,22 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Sales Invoice": {
+		"on_submit": "service_pro.doc_events.sales_invoice.on_submit_si",
+		"on_cancel": "service_pro.doc_events.sales_invoice.on_cancel_si",
+	},
+    "File": {
+		"on_trash": "service_pro.doc_events.file.on_trash_f",
+	},
+    "Delivery Note": {
+		"on_submit": "service_pro.doc_events.delivery_note.change_status",
+		"on_cancel": "service_pro.doc_events.delivery_note.change_status_cancel",
+	},
+    "Journal Entry": {
+		"on_submit": "service_pro.doc_events.journal_entry.submit_jv",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -135,3 +144,51 @@ app_license = "MIT"
 #
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
 
+# fixtures = [
+#     {
+#         "doctype": "Custom Field",
+#         "filters": [
+#             [
+#                 "name",
+#                 "in",
+#                 [
+#                     "Quotation-service_receipt_note",
+#                     "Sales Invoice-production",
+#                     "Journal Entry-production",
+#                     "Stock Entry-production",
+#                     "Delivery Note-production",
+#                     "Sales Invoice-amount_in_arabic_words_",
+#                     "Sales Invoice-sales_man",
+#                     "Sales Invoice-sales_man_name",
+#                     "Sales Invoice-paid",
+#                     "Sales Invoice Item-include_discount",
+#                     "Purchase Receipt-production",
+#                     "Material Request-production",
+#                     "Delivery Note-location",
+#                     "Delivery Note-sales_man_name",
+#                     "Delivery Note-sales_man",
+#                     "Sales Invoice-showroom_card",
+#                     "Sales Invoice-showroom_cash",
+#                     "Sales Invoice-cash",
+#                     "Sales Invoice-unpaid",
+#                     "Sales Invoice-liabilities_account",
+#                     "Sales Invoice-expense_account",
+#                     "Sales Invoice-expense_cost_center",
+#                     "Sales Invoice-incentive",
+#                     "Sales Invoice-incentive_journal",
+#                     "Sales Invoice-column_break_181",
+#                     "Sales Invoice-journal_entry",
+#                     "Sales Person-liabilities_account",
+#                     "Customer-sales_man",
+#                     "Customer-sales_man_name",
+#                     "Journal Entry-agent_payment_request",
+#                     "Quotation-site_visit_report",
+#                     "Journal Entry-petty_cash_request",
+#                     "Employee-petty_cash_account",
+#                     "Sales Invoice Item-si_discount",
+#                     "Material Request-site_visit_report",
+#                 ]
+#             ]
+#         ]
+#     }
+# ]
