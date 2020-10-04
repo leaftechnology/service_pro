@@ -62,7 +62,7 @@ def get_service_records(reference):
 
     srn = frappe.db.sql(""" SELECT * FROM `tabEstimation` WHERE name=%s """, estimation_, as_dict=1)
     if len(srn) > 0:
-        srn_ = srn[0].receipt_note
+        srn_ = srn[0].service_receipt_note
         frappe.db.sql(""" UPDATE `tabService Receipt Note` SET status=%s WHERE name=%s""",
 					 ("Completed", srn_))
     frappe.db.commit()
