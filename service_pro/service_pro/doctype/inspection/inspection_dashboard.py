@@ -7,7 +7,7 @@ def get_data():
 	return {
 		'heatmap': True,
 		'heatmap_message': _('This is based on transactions against this Inspection. See timeline below for details'),
-		'fieldname': 'inspections',
+		'fieldname': 'inspection',
 		'transactions': [
 			{
 				'label': _('Estimation'),
