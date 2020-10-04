@@ -272,6 +272,11 @@ cur_frm.cscript.raw_material_add = function (frm,cdt,cdn) {
             d.warehouse = warehouse
             cur_frm.refresh_field("raw_material")
         })
+    frappe.db.get_single_value('Production Settings', 'raw_material_cost_center')
+        .then(cc => {
+            d.cost_center = cc
+            cur_frm.refresh_field("raw_material")
+        })
 }
 cur_frm.cscript.scoop_of_work_total = function (frm,cdt,cdn) {
    set_rate_and_amount(cur_frm)
