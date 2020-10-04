@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "autoname": "fieldname:type",
  "creation": "2020-10-03 11:41:14.959005",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -15,7 +16,7 @@
   }
  ],
  "links": [],
- "modified": "2020-10-03 11:41:14.959005",
+ "modified": "2020-10-04 20:03:07.075002",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Type",
