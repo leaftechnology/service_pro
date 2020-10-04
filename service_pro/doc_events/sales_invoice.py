@@ -1,34 +1,34 @@
 import frappe
 
-def generate_jv(doc):
-	if doc.paid:
-		doc_jv = {
-			"doctype": "Journal Entry",
-			"voucher_type": "Journal Entry",
-			"posting_date": doc.posting_date,
-			"accounts": jv_accounts_paid(doc),
-		}
-
-		jv = frappe.get_doc(doc_jv)
-		jv.insert(ignore_permissions=1)
-		jv.submit()
-		frappe.db.sql(""" UPDATE `tabSales Invoice` SET journal_entry=%s WHERE name=%s""", (jv.name, doc.name))
-		frappe.db.commit()
-
-	elif doc.unpaid:
-		doc_jv = {
-			"doctype": "Journal Entry",
-			"voucher_type": "Journal Entry",
-			"posting_date": doc.posting_date,
-			"accounts": jv_accounts_unpaid(doc),
-		}
-
-		jv = frappe.get_doc(doc_jv)
-		jv.insert(ignore_permissions=1)
-		jv.submit()
-		doc.journal_entry = jv.name
-		frappe.db.sql(""" UPDATE `tabSales Invoice` SET journal_entry=%s WHERE name=%s""", (jv.name, doc.name))
-		frappe.db.commit()
+# def generate_jv(doc):
+# 	if doc.paid:
+# 		doc_jv = {
+# 			"doctype": "Journal Entry",
+# 			"voucher_type": "Journal Entry",
+# 			"posting_date": doc.posting_date,
+# 			"accounts": jv_accounts_paid(doc),
+# 		}
+#
+# 		jv = frappe.get_doc(doc_jv)
+# 		jv.insert(ignore_permissions=1)
+# 		jv.submit()
+# 		frappe.db.sql(""" UPDATE `tabSales Invoice` SET journal_entry=%s WHERE name=%s""", (jv.name, doc.name))
+# 		frappe.db.commit()
+#
+# 	elif doc.unpaid:
+# 		doc_jv = {
+# 			"doctype": "Journal Entry",
+# 			"voucher_type": "Journal Entry",
+# 			"posting_date": doc.posting_date,
+# 			"accounts": jv_accounts_unpaid(doc),
+# 		}
+#
+# 		jv = frappe.get_doc(doc_jv)
+# 		jv.insert(ignore_permissions=1)
+# 		jv.submit()
+# 		doc.journal_entry = jv.name
+# 		frappe.db.sql(""" UPDATE `tabSales Invoice` SET journal_entry=%s WHERE name=%s""", (jv.name, doc.name))
+# 		frappe.db.commit()
 def jv_accounts_unpaid(doc):
 	accounts = []
 	accounts.append({
@@ -63,10 +63,10 @@ def jv_accounts_paid(doc):
 	return accounts
 @frappe.whitelist()
 def on_submit_si(doc, method):
-	if len(doc.sales_team) > 0 and not doc.paid and not doc.unpaid:
-		frappe.throw("Please select Paid or Unpaid for Sales Person")
+	# if len(doc.sales_team) > 0 and not doc.paid and not doc.unpaid:
+	# 	frappe.throw("Please select Paid or Unpaid for Sales Person")
 
-	generate_jv(doc)
+	# generate_jv(doc)
 	for prod in doc.production:
 		production = frappe.db.sql(""" SELECT * FROM `tabProduction` WHERE name=%s """, prod.reference, as_dict=1)
 		if len(production) > 0:
