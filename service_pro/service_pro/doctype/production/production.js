@@ -179,9 +179,7 @@ cur_frm.cscript.cylinder_service = function (frm, cdt, cdn) {
                         filters.push(["customer", "=", cur_frm.doc.customer])
                     }
                     if(cur_frm.doc.type === 'Re-Service'){
-                        filters.push(["series", "in", ["CS-", "SK-", "HK-", "PB-"]])
-                    } else {
-                        filters.push(["series", "=", "CS-"])
+                        filters.push(["series", "in", ['RW-AC-','RW-DC-']])
                     }
                     return {
                          filters: filters
@@ -299,8 +297,8 @@ frappe.ui.form.on('Production', {
     },
 	refresh: function(frm) {
         cur_frm.get_field("item_selling_price_list").grid.cannot_add_rows = true;
-cur_frm.get_field("item_selling_price_list").grid.only_sortable();
-cur_frm.refresh_field("item_selling_price_list")
+        cur_frm.get_field("item_selling_price_list").grid.only_sortable();
+        cur_frm.refresh_field("item_selling_price_list")
          if(cur_frm.doc.docstatus && cur_frm.doc.status === "In Progress"){
              frm.add_custom_button(__("Close"), () => {
                     cur_frm.call({
@@ -461,17 +459,6 @@ cur_frm.refresh_field("item_selling_price_list")
                 }
             }
         });
-         cur_frm.fields_dict.linked_productions.grid.get_field("cylinder_service").get_query =
-			function() {
-				return {
-					 filters: [
-                    ["status", "!=", "Completed"],
-                    ["docstatus", "=", 1],
-                    ["series", "=", "CS-"],
-                ]
-				}
-			}
-
         var generate_button = true
         if(cur_frm.doc.scoop_of_work !== undefined){
              for(var x=0;x<cur_frm.doc.scoop_of_work.length;x += 1){
@@ -488,38 +475,21 @@ cur_frm.refresh_field("item_selling_price_list")
                 },
                 callback: function (r) {
                     if(!r.message && generate_button && ["In Progress", "Partially Completed", "Partially Delivered"].includes(cur_frm.doc.status) && cur_frm.doc.docstatus){
-                            if(["Assemble", "Disassemble"].includes(cur_frm.doc.type) ){
-                                if(cur_frm.doc.production_status === "Completed"){
-                                    cur_frm.add_custom_button(__("Stock Entry"), () => {
-                                         cur_frm.call({
-                                            doc: cur_frm.doc,
-                                            method: 'generate_se',
-                                            freeze: true,
-                                            freeze_message: "Generating Stock Entry...",
-                                             async: false,
-                                            callback: (r) => {
-                                                cur_frm.reload_doc()
 
-                                         }
-                                        })
-                                    }, "Generate");
-                                }
-
-                        } else {
                             cur_frm.add_custom_button(__("Stock Entry"), () => {
-                             cur_frm.call({
-                                doc: cur_frm.doc,
-                                method: 'generate_se',
-                                freeze: true,
-                                freeze_message: "Generating Stock Entry...",
-                                 async: false,
-                                callback: (r) => {
-                                    cur_frm.reload_doc()
+                                 cur_frm.call({
+                                    doc: cur_frm.doc,
+                                    method: 'generate_se',
+                                    freeze: true,
+                                    freeze_message: "Generating Stock Entry...",
+                                     async: false,
+                                    callback: (r) => {
+                                        cur_frm.reload_doc()
 
-                             }
-                            })
-                        }, "Generate");
-                        }
+                                 }
+                                })
+                            }, "Generate");
+
 
                     } else if(r.message && generate_button && ["In Progress", "Partially Completed", "Partially Delivered", "To Deliver", "To Bill", "To Deliver and Bill"].includes(cur_frm.doc.status) && cur_frm.doc.docstatus && cur_frm.doc.type !== "Re-Service"){
                         cur_frm.set_df_property('raw_material', 'read_only', 1);
@@ -667,22 +637,22 @@ cur_frm.refresh_field("item_selling_price_list")
             })
         }
 	},
-    series: function(){
-        if(cur_frm.doc.series && cur_frm.doc.type === "Re-Service"){
-            cur_frm.clear_table("linked_productions")
-            cur_frm.refresh_field("linked_productions")
-            cur_frm.fields_dict.linked_productions.grid.get_field("cylinder_service").get_query =
-			function() {
-				return {
-					 filters: [
-                    ["status", "!=", "Completed"],
-                    ["docstatus", "=", 1],
-                    ["series", "=", cur_frm.doc.series.replace("R", "")],
-                ]
-				}
-			}
-        }
-    },
+    // series: function(){
+    //     if(cur_frm.doc.series && cur_frm.doc.type === "Re-Service"){
+    //         cur_frm.clear_table("linked_productions")
+    //         cur_frm.refresh_field("linked_productions")
+    //         cur_frm.fields_dict.linked_productions.grid.get_field("cylinder_service").get_query =
+		// 	function() {
+		// 		return {
+		// 			 filters: [
+    //                 ["status", "!=", "Completed"],
+    //                 ["docstatus", "=", 1],
+    //                 ["series", "=", cur_frm.doc.series.replace("R", "")],
+    //             ]
+		// 		}
+		// 	}
+    //     }
+    // },
     no_estimation: function () {
         cur_frm.toggle_reqd('estimation', !cur_frm.doc.no_estimation)
         cur_frm.set_df_property("scoop_of_work", "hidden", cur_frm.doc.no_estimation)
@@ -728,10 +698,10 @@ cur_frm.refresh_field("item_selling_price_list")
 			function() {
 				return {
 					 filters: [
-                    ["status", "=", "Completed"],
-                    ["docstatus", "=", 1],
-                    ["series", "in", ["CS-"]],
-                ]
+                        ["status", "=", "Completed"],
+                        ["docstatus", "=", 1],
+                        ["series", "in", ['RW-AC-','RW-DC-']]
+                    ]
 				}
 			}
 
