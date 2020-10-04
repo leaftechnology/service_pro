@@ -233,8 +233,6 @@ frappe.ui.form.on('Production', {
 	        frm.set_df_property('series', 'options', ['BJ-RW-AC-','BJ-RW-DC-'])
             cur_frm.doc.series = 'BJ-RW-AC-'
             cur_frm.refresh_field("series")
-            cur_frm.set_df_property("scoop_of_work", "hidden", 1)
-            cur_frm.set_df_property("scoop_of_work_total", "hidden", 1)
         }
         cur_frm.trigger("no_estimation")
         if(cur_frm.is_new()){

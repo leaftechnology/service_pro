@@ -171,7 +171,6 @@
    "options": "Raw Material"
   },
   {
-   "depends_on": "eval: doc.type == \"Service\"",
    "fieldname": "estimation",
    "fieldtype": "Link",
    "label": "Estimation",
@@ -325,7 +324,7 @@
   {
    "allow_on_submit": 1,
    "default": "In Progress",
-   "depends_on": "eval: doc.no_estimation == 1",
+   "depends_on": "eval: doc.no_estimation == 1 || doc.type == \"Re-Service\"",
    "fieldname": "production_status",
    "fieldtype": "Select",
    "label": "Production Status",
@@ -487,7 +486,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-04 16:12:04.902840",
+ "modified": "2020-10-04 16:33:33.218531",
  "modified_by": "Administrator",
  "module": "Service Pro",
  "name": "Production",
